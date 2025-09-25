@@ -1,0 +1,1 @@
+{"version":3,"file":"team.provider.js","sourceRoot":"","sources":["../../src/team/team.provider.ts"],"names":[],"mappings":";;;AACA,qDAA2C;AAE9B,QAAA,YAAY,GAAG;IACxB;QACA,OAAO,EAAG,iBAAiB;QAC3B,UAAU,EAAE,CAAC,UAAsB,EAAE,EAAE,CAAC,UAAU,CAAC,aAAa,CAAC,kBAAI,CAAC;QACtE,MAAM,EAAE,CAAC,qBAAqB,CAAC;KAC9B;CACJ,CAAA"}
