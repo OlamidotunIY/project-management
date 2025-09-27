@@ -2,9 +2,7 @@ import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn, Up
 import { User } from '../../user/types/user.enitity';
 import { Project } from '../../project/types/project.entity';
 import { Team } from '../../team/types/team.entity';
-
-export type TaskStatus = 'pending' | 'in_progress' | 'completed' | 'blocked';
-export type TaskPriority = 'low' | 'medium' | 'high' | 'critical';
+import { TaskStatus, TaskPriority } from './taks.enum';
 
 @Entity()
 export class Task {
@@ -17,10 +15,10 @@ export class Task {
 	@Column('text', { nullable: true })
 	description?: string;
 
-	@Column({ length: 30, default: 'pending' })
+	@Column({ type: 'enum', enum: TaskStatus, default: TaskStatus.PENDING })
 	status: TaskStatus;
 
-	@Column({ length: 20, default: 'medium' })
+	@Column({ type: 'enum', enum: TaskPriority, default: TaskPriority.MEDIUM })
 	priority: TaskPriority;
 
 	@Column('timestamp', { nullable: true })

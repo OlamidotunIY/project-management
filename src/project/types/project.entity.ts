@@ -11,8 +11,7 @@ import {
 import { User } from '../../user/types/user.enitity';
 import { Organization } from '../../organization/types/organization.entity';
 import { Team } from '../../team/types/team.entity';
-
-export type projectStatus = 'active' | 'completed' | 'pending' | 'archived';
+import { ProjectStatus } from './project.enum';
 
 @Entity()
 export class Project {
@@ -25,8 +24,8 @@ export class Project {
 	@Column('text', { nullable: true })
 	description?: string;
 
-	@Column({ length: 50, default: 'active' })
-	status: string;
+	@Column({ type: 'enum', enum: ProjectStatus, default: ProjectStatus.ACTIVE, })
+	status: ProjectStatus;
 
 	@CreateDateColumn()
 	createdAt: Date;
