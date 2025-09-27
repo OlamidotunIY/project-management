@@ -11,11 +11,13 @@ const common_1 = require("@nestjs/common");
 const organization_service_1 = require("./organization.service");
 const organization_controller_1 = require("./organization.controller");
 const organization_provider_1 = require("./organization.provider");
+const database_module_1 = require("../database/database.module");
 let OrganizationModule = class OrganizationModule {
 };
 exports.OrganizationModule = OrganizationModule;
 exports.OrganizationModule = OrganizationModule = __decorate([
     (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
         providers: [organization_service_1.OrganizationService, ...organization_provider_1.organizationProvider],
         controllers: [organization_controller_1.OrganizationController]
     })

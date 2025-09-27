@@ -11,53 +11,43 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Organization = void 0;
 const typeorm_1 = require("typeorm");
-const user_enitity_1 = require("../../user/types/user.enitity");
 let Organization = class Organization {
-    id;
+    _id;
     name;
     description;
     logoUrl;
     createdAt;
     updatedAt;
-    owner;
     userId;
 };
 exports.Organization = Organization;
 __decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)(),
-    __metadata("design:type", Number)
-], Organization.prototype, "id", void 0);
+    (0, typeorm_1.ObjectIdColumn)(),
+    __metadata("design:type", typeorm_1.ObjectId)
+], Organization.prototype, "_id", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ length: 100 }),
+    (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], Organization.prototype, "name", void 0);
 __decorate([
-    (0, typeorm_1.Column)('text', { nullable: true }),
+    (0, typeorm_1.Column)({ nullable: true }),
     __metadata("design:type", String)
 ], Organization.prototype, "description", void 0);
 __decorate([
-    (0, typeorm_1.Column)('text', { nullable: true }),
+    (0, typeorm_1.Column)({ nullable: true }),
     __metadata("design:type", String)
 ], Organization.prototype, "logoUrl", void 0);
 __decorate([
-    (0, typeorm_1.Column)('timestamp', { default: () => 'CURRENT_TIMESTAMP' }),
+    (0, typeorm_1.CreateDateColumn)(),
     __metadata("design:type", Date)
 ], Organization.prototype, "createdAt", void 0);
 __decorate([
-    (0, typeorm_1.Column)('timestamp', {
-        default: () => 'CURRENT_TIMESTAMP',
-        onUpdate: 'CURRENT_TIMESTAMP',
-    }),
+    (0, typeorm_1.UpdateDateColumn)(),
     __metadata("design:type", Date)
 ], Organization.prototype, "updatedAt", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => user_enitity_1.User, { nullable: false }),
-    (0, typeorm_1.JoinColumn)({ name: 'userId' }),
-    __metadata("design:type", user_enitity_1.User)
-], Organization.prototype, "owner", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", Number)
+    (0, typeorm_1.Column)('objectid'),
+    __metadata("design:type", typeorm_1.ObjectId)
 ], Organization.prototype, "userId", void 0);
 exports.Organization = Organization = __decorate([
     (0, typeorm_1.Entity)()

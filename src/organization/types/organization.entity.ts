@@ -1,34 +1,26 @@
-import { Column, Entity, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from "typeorm";
-import { User } from "../../user/types/user.enitity";
+import { Column, Entity, ObjectIdColumn, ObjectId, CreateDateColumn, UpdateDateColumn } from "typeorm";
 
 @Entity()
 export class Organization {
-    @PrimaryGeneratedColumn()
-    id: number;
-
-    @Column({ length: 100 })
-    name: string;
-
-    @Column('text', { nullable: true })
-    description: string;
-
-    @Column('text', { nullable: true })
-    logoUrl: string;
-
-    @Column('timestamp', { default: () => 'CURRENT_TIMESTAMP' })
-    createdAt: Date;
-
-    @Column('timestamp', {
-        default: () => 'CURRENT_TIMESTAMP',
-        onUpdate: 'CURRENT_TIMESTAMP',
-    })
-    updatedAt: Date;
-
-    // Relation to User - Many organizations can belong to one user
-    @ManyToOne(() => User, { nullable: false })
-    @JoinColumn({ name: 'userId' })
-    owner: User;
+    @ObjectIdColumn()
+    _id: ObjectId;
 
     @Column()
-    userId: number;
+    name: string;
+
+    @Column({ nullable: true })
+    description?: string;
+
+    @Column({ nullable: true })
+    logoUrl?: string;
+
+    @CreateDateColumn()
+    createdAt: Date;
+
+    @UpdateDateColumn()
+    updatedAt: Date;
+
+    // Reference to User - Store the user's ObjectId
+    @Column('objectid')
+    userId: ObjectId;
 }

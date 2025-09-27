@@ -1,12 +1,11 @@
-import { Organization } from '../../organization/types/organization.entity';
+import { ObjectId } from 'typeorm';
 export declare class User {
-    id: number;
+    _id: ObjectId;
     name: string;
     email: string;
     password: string;
     username: string;
-    profilePictureUrl: string;
+    profilePictureUrl?: string;
     createdAt: Date;
     updatedAt: Date;
-    organizations: Organization[];
 }
