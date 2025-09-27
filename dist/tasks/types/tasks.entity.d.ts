@@ -1,7 +1,7 @@
 import { User } from '../../user/types/user.enitity';
 import { Project } from '../../project/types/project.entity';
 import { Team } from '../../team/types/team.entity';
-export type TaskStatus = 'todo' | 'in_progress' | 'done' | 'blocked';
+export type TaskStatus = 'pending' | 'in_progress' | 'completed' | 'blocked';
 export type TaskPriority = 'low' | 'medium' | 'high' | 'critical';
 export declare class Task {
     id: number;

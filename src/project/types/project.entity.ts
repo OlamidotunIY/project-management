@@ -12,6 +12,8 @@ import { User } from '../../user/types/user.enitity';
 import { Organization } from '../../organization/types/organization.entity';
 import { Team } from '../../team/types/team.entity';
 
+export type projectStatus = 'active' | 'completed' | 'pending' | 'archived';
+
 @Entity()
 export class Project {
 	@PrimaryGeneratedColumn()

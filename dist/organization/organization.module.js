@@ -9,12 +9,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.OrganizationModule = void 0;
 const common_1 = require("@nestjs/common");
 const organization_service_1 = require("./organization.service");
+const organization_controller_1 = require("./organization.controller");
+const organization_provider_1 = require("./organization.provider");
 let OrganizationModule = class OrganizationModule {
 };
 exports.OrganizationModule = OrganizationModule;
 exports.OrganizationModule = OrganizationModule = __decorate([
     (0, common_1.Module)({
-        providers: [organization_service_1.OrganizationService]
+        providers: [organization_service_1.OrganizationService, ...organization_provider_1.organizationProvider],
+        controllers: [organization_controller_1.OrganizationController]
     })
 ], OrganizationModule);
 //# sourceMappingURL=organization.module.js.map

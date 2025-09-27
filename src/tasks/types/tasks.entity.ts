@@ -3,7 +3,7 @@ import { User } from '../../user/types/user.enitity';
 import { Project } from '../../project/types/project.entity';
 import { Team } from '../../team/types/team.entity';
 
-export type TaskStatus = 'todo' | 'in_progress' | 'done' | 'blocked';
+export type TaskStatus = 'pending' | 'in_progress' | 'completed' | 'blocked';
 export type TaskPriority = 'low' | 'medium' | 'high' | 'critical';
 
 @Entity()
@@ -17,7 +17,7 @@ export class Task {
 	@Column('text', { nullable: true })
 	description?: string;
 
-	@Column({ length: 30, default: 'todo' })
+	@Column({ length: 30, default: 'pending' })
 	status: TaskStatus;
 
 	@Column({ length: 20, default: 'medium' })
