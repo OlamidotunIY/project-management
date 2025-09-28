@@ -1,10 +1,10 @@
-import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Column, Entity, OneToMany, ObjectIdColumn, CreateDateColumn, UpdateDateColumn, ObjectId } from 'typeorm';
 import { Organization } from '../../organization/types/organization.entity';
 
 @Entity()
 export class User {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @ObjectIdColumn()
+  _id: ObjectId;
 
   @Column({ length: 100 })
   name: string;
@@ -21,16 +21,13 @@ export class User {
   @Column('text', { nullable: true })
   profilePictureUrl: string;
 
-  @Column('timestamp', { default: () => 'CURRENT_TIMESTAMP' })
+  @CreateDateColumn()
   createdAt: Date;
 
-  @Column('timestamp', {
-    default: () => 'CURRENT_TIMESTAMP',
-    onUpdate: 'CURRENT_TIMESTAMP',
-  })
+  @UpdateDateColumn()
   updatedAt: Date;
 
   // Relation to Organization - One user can own many organizations
-  @OneToMany(() => Organization, (organization) => organization.owner)
-  organizations: Organization[];
+  @Column({ nullable: true })
+  organizationIds?: ObjectId[];
 }

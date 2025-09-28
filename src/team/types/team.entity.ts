@@ -1,20 +1,21 @@
 import {
 	Entity,
-	PrimaryGeneratedColumn,
 	Column,
 	ManyToMany,
 	JoinTable,
 	ManyToOne,
 	CreateDateColumn,
 	UpdateDateColumn,
+	ObjectIdColumn,
+	ObjectId,
 } from 'typeorm';
 import { User } from '../../user/types/user.enitity';
 import { Project } from '../../project/types/project.entity';
 
 @Entity()
 export class Team {
-	@PrimaryGeneratedColumn()
-	id: number;
+	@ObjectIdColumn()
+	_id: ObjectId;
 
 	@Column({ length: 100 })
 	name: string;
@@ -29,15 +30,15 @@ export class Team {
 	updatedAt: Date;
 
 	// Users that belong to this team
-	@ManyToMany(() => User, (user) => user as any /* inverse side not declared here */)
-	@JoinTable()
-	members?: User[];
+	@Column({nullable: true})
+	memberIds?: ObjectId[];
+
 
 	// Projects this team is assigned to
-	@ManyToMany(() => Project, (project) => project.teams)
-	projects?: Project[];
+	@Column({ nullable: true })
+	projectIds?: ObjectId[];
 
 	// Optional team lead
-	@ManyToOne(() => User, { nullable: true })
-	lead?: User;
+	@Column({ nullable: true })
+	teamLeadId?: ObjectId;
 }

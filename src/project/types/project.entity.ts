@@ -1,22 +1,18 @@
 import {
 	Entity,
-	PrimaryGeneratedColumn,
 	Column,
-	ManyToOne,
-	ManyToMany,
-	JoinTable,
 	CreateDateColumn,
 	UpdateDateColumn,
+	ObjectIdColumn,
+	ObjectId,
 } from 'typeorm';
-import { User } from '../../user/types/user.enitity';
-import { Organization } from '../../organization/types/organization.entity';
-import { Team } from '../../team/types/team.entity';
+
 import { ProjectStatus } from './project.enum';
 
 @Entity()
 export class Project {
-	@PrimaryGeneratedColumn()
-	id: number;
+	@ObjectIdColumn()
+	_id: ObjectId;
 
 	@Column({ length: 150 })
 	name: string;
@@ -33,16 +29,16 @@ export class Project {
 	@UpdateDateColumn()
 	updatedAt: Date;
 
-	// Optional owner of the project (a User)
-	@ManyToOne(() => User, { nullable: true })
-	owner?: User;
+	// Reference to User (owner) - Store ObjectId
+	@Column({ nullable: true })
+	ownerId?: ObjectId;
+	
 
-	// Optional organization this project belongs to
-	@ManyToOne(() => Organization, (org) => (org as any).projects, { nullable: true })
-	organization?: Organization;
+	// Reference to Organization - Store ObjectId
+	@Column({ nullable: true })
+	organizationId?: ObjectId;
 
-	// Teams working on this project. Many teams can work on many projects.
-	@ManyToMany(() => Team, (team) => team.projects, { cascade: true })
-	@JoinTable()
-	teams?: Team[];
+	// Array of Team ObjectIds working on this project
+	@Column({ nullable: true })
+	teamIds?: ObjectId[];
 }

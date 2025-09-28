@@ -1,11 +1,11 @@
-import { Column, Entity, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from "typeorm";
+import { Column, Entity, ObjectIdColumn, ObjectId, CreateDateColumn, UpdateDateColumn } from "typeorm";
 import { User } from "../../user/types/user.enitity";
 
 @Entity()
 export class Organization {
-    @PrimaryGeneratedColumn()
-    id: number;
-
+    @ObjectIdColumn()
+    _id: ObjectId;
+    
     @Column({ length: 100 })
     name: string;
 
@@ -15,20 +15,26 @@ export class Organization {
     @Column('text', { nullable: true })
     logoUrl: string;
 
-    @Column('timestamp', { default: () => 'CURRENT_TIMESTAMP' })
+   @CreateDateColumn()
     createdAt: Date;
-
-    @Column('timestamp', {
-        default: () => 'CURRENT_TIMESTAMP',
-        onUpdate: 'CURRENT_TIMESTAMP',
-    })
+    
+    @UpdateDateColumn()
     updatedAt: Date;
 
     // Relation to User - Many organizations can belong to one user
-    @ManyToOne(() => User, { nullable: false })
-    @JoinColumn({ name: 'userId' })
-    owner: User;
+    @Column({ nullable: true })
+    ownerId?: ObjectId;
+    // @ManyToOne(() => User, (user) => user.organizations, { nullable: false, onDelete: 'CASCADE' })
+    // @JoinColumn({ name: 'ownerId' })
+    // owner: User;
 
-    @Column()
-    userId: number;
+    @Column({ nullable: true })
+    memberIds?: ObjectId[];
+    // @ManyToMany(() => User, (user) => user.organizations)
+    // @JoinTable({
+    //     name: 'organization_members',
+    //     joinColumn: { name: 'organizationId', referencedColumnName: '_id' },
+    //     inverseJoinColumn: { name: 'userId', referencedColumnName: '_id' },
+    // })
+    // members?: User[];
 }
