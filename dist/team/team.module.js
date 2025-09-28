@@ -11,11 +11,13 @@ const common_1 = require("@nestjs/common");
 const team_controller_1 = require("./team.controller");
 const team_service_1 = require("./team.service");
 const team_provider_1 = require("./team.provider");
+const database_module_1 = require("../database/database.module");
 let TeamModule = class TeamModule {
 };
 exports.TeamModule = TeamModule;
 exports.TeamModule = TeamModule = __decorate([
     (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
         controllers: [team_controller_1.TeamController],
         providers: [team_service_1.TeamService, ...team_provider_1.teamProvider]
     })

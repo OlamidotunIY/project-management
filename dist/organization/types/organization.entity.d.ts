@@ -1,11 +1,10 @@
-import { User } from "../../user/types/user.enitity";
+import { ObjectId } from "typeorm";
 export declare class Organization {
-    id: number;
+    _id: ObjectId;
     name: string;
-    description: string;
-    logoUrl: string;
+    description?: string;
+    logoUrl?: string;
     createdAt: Date;
     updatedAt: Date;
-    owner: User;
-    userId: number;
+    userId: ObjectId;
 }

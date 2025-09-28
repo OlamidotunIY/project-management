@@ -1,16 +1,11 @@
 import {
 	Entity,
 	Column,
-	ManyToMany,
-	JoinTable,
-	ManyToOne,
 	CreateDateColumn,
 	UpdateDateColumn,
 	ObjectIdColumn,
 	ObjectId,
 } from 'typeorm';
-import { User } from '../../user/types/user.enitity';
-import { Project } from '../../project/types/project.entity';
 
 @Entity()
 export class Team {

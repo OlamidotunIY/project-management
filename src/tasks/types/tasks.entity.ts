@@ -1,7 +1,4 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn, UpdateDateColumn, ObjectIdColumn, ObjectId } from 'typeorm';
-import { User } from '../../user/types/user.enitity';
-import { Project } from '../../project/types/project.entity';
-import { Team } from '../../team/types/team.entity';
 import { TaskStatus, TaskPriority } from './taks.enum';
 
 @Entity()

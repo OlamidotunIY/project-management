@@ -1,12 +1,11 @@
 import {
 	Entity,
+	ObjectIdColumn,
+	ObjectId,
 	Column,
 	CreateDateColumn,
 	UpdateDateColumn,
-	ObjectIdColumn,
-	ObjectId,
 } from 'typeorm';
-
 import { ProjectStatus } from './project.enum';
 
 @Entity()
@@ -14,13 +13,13 @@ export class Project {
 	@ObjectIdColumn()
 	_id: ObjectId;
 
-	@Column({ length: 150 })
+	@Column()
 	name: string;
 
-	@Column('text', { nullable: true })
+	@Column({ nullable: true })
 	description?: string;
 
-	@Column({ type: 'enum', enum: ProjectStatus, default: ProjectStatus.ACTIVE, })
+	@Column({ enum: ProjectStatus, default: ProjectStatus.ACTIVE })
 	status: ProjectStatus;
 
 	@CreateDateColumn()
@@ -32,7 +31,6 @@ export class Project {
 	// Reference to User (owner) - Store ObjectId
 	@Column({ nullable: true })
 	ownerId?: ObjectId;
-	
 
 	// Reference to Organization - Store ObjectId
 	@Column({ nullable: true })

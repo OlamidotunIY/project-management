@@ -1,33 +1,28 @@
-import { Column, Entity, OneToMany, ObjectIdColumn, CreateDateColumn, UpdateDateColumn, ObjectId } from 'typeorm';
-import { Organization } from '../../organization/types/organization.entity';
+import { Column, Entity, ObjectIdColumn, ObjectId, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 
 @Entity()
 export class User {
   @ObjectIdColumn()
   _id: ObjectId;
 
-  @Column({ length: 100 })
+  @Column()
   name: string;
 
-  @Column('text', { unique: true })
+  @Column({ unique: true })
   email: string;
 
-  @Column('text', { select: false, nullable: false })
+  @Column({ select: false })
   password: string;
 
-  @Column('text', { unique: true })
+  @Column({ unique: true })
   username: string;
 
-  @Column('text', { nullable: true })
-  profilePictureUrl: string;
+  @Column({ nullable: true })
+  profilePictureUrl?: string;
 
   @CreateDateColumn()
   createdAt: Date;
 
   @UpdateDateColumn()
   updatedAt: Date;
-
-  // Relation to Organization - One user can own many organizations
-  @Column({ nullable: true })
-  organizationIds?: ObjectId[];
 }
