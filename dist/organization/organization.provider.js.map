@@ -1,1 +1,0 @@
-{"version":3,"file":"organization.provider.js","sourceRoot":"","sources":["../../src/organization/organization.provider.ts"],"names":[],"mappings":";;;AACA,qEAA2D;AAE9C,QAAA,oBAAoB,GAAG;IAClC;QACE,OAAO,EAAE,yBAAyB;QAClC,UAAU,EAAE,CAAC,UAAsB,EAAE,EAAE,CAAC,UAAU,CAAC,aAAa,CAAC,kCAAY,CAAC;QAC9E,MAAM,EAAE,CAAC,qBAAqB,CAAC;KAChC;CACF,CAAC"}

@@ -1,24 +1,24 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn, UpdateDateColumn, ObjectIdColumn, ObjectId } from 'typeorm';
-import { TaskStatus, TaskPriority } from './taks.enum';
+import { Entity, Column, CreateDateColumn, UpdateDateColumn, ObjectIdColumn, ObjectId } from 'typeorm';
+import { TaskStatus, TaskPriority } from './tasks.enum';
 
 @Entity()
 export class Task {
 	@ObjectIdColumn()
 	_id: ObjectId;
 
-	@Column({ length: 200 })
+	@Column()
 	title: string;
 
-	@Column('text', { nullable: true })
+	@Column({ nullable: true })
 	description?: string;
 
-	@Column({ type: 'enum', enum: TaskStatus, default: TaskStatus.PENDING })
+	@Column({ enum: TaskStatus, default: TaskStatus.PENDING })
 	status: TaskStatus;
 
-	@Column({ type: 'enum', enum: TaskPriority, default: TaskPriority.MEDIUM })
+	@Column({ enum: TaskPriority, default: TaskPriority.MEDIUM })
 	priority: TaskPriority;
 
-	@Column('timestamp', { nullable: true })
+	@Column({ nullable: true })
 	dueDate?: Date;
 
 	@CreateDateColumn()
